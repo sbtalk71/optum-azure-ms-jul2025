@@ -45,18 +45,18 @@ public class EmpService {
 
 	public EmpDTO save(EmpDTO empDto) {
 
-		if (empRepository.existsById(empDto.id())) {
+		if (empRepository.existsById(empDto.getId())) {
 			throw new EmpExistsException("Emp Exists..");
 		} else {
-			Emp e = empRepository.save(new Emp(empDto.id(), empDto.name(), empDto.city(), empDto.salary()));
+			Emp e = empRepository.save(new Emp(empDto.getId(), empDto.getName(), empDto.getCity(), empDto.getSalary()));
 			return new EmpDTO(e.getEmpId(), e.getName(), e.getCity(), e.getSalary());
 		}
 	}
 
 	public EmpDTO update(EmpDTO empDto) {
 
-		if (empRepository.existsById(empDto.id())) {
-			Emp e = empRepository.save(new Emp(empDto.id(), empDto.name(), empDto.city(), empDto.salary()));
+		if (empRepository.existsById(empDto.getId())) {
+			Emp e = empRepository.save(new Emp(empDto.getId(), empDto.getName(), empDto.getCity(), empDto.getSalary()));
 			return new EmpDTO(e.getEmpId(), e.getName(), e.getCity(), e.getSalary());
 
 		} else {

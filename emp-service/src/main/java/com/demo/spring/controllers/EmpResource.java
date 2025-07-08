@@ -25,7 +25,7 @@ public class EmpResource {
 		this.empService = empService;
 	}
 
-	@GetMapping(path="/{eid}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path="/{eid}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public ResponseEntity<EmpDTO> findEmp(@PathVariable("eid") Integer id){
 		return ResponseEntity.ok(empService.findEmpById(id));
 	}
