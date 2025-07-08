@@ -19,6 +19,7 @@ public class HrResource {
 
 	public HrResource(HrService hrService) {
 		this.hrService = hrService;
+		System.out.println("Injected Service "+hrService.getClass().getName());
 	}
 
 
