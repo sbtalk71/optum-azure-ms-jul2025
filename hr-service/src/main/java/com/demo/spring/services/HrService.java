@@ -5,19 +5,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
 import com.demo.spring.dto.EmpDTO;
+import com.demo.spring.exceptions.HrResourceException;
 
 @Service
 public class HrService {
 
-	private RestClient restClient;
+	private RestClient.Builder restClientBuilder;
 
-	public HrService(RestClient restClient) {
-		this.restClient = restClient;
+	public HrService(RestClient.Builder restClientBuilder) {
+		this.restClientBuilder = restClientBuilder;
 	}
 
 	
 	public EmpDTO getDetails(Integer id) {
-		return this.restClient.get().uri("http://localhost:8080/emp/" + id).accept(MediaType.APPLICATION_JSON)
+		try {
+		return this.restClientBuilder.build().get().uri("http://emp-service/emp/" + id).accept(MediaType.APPLICATION_JSON)
 				.retrieve().body(EmpDTO.class);
+		}catch (RuntimeException e) {
+			throw new HrResourceException(e.getMessage());
+		}
 	}
 }
