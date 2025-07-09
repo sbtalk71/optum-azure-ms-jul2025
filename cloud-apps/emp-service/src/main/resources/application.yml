@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: ${DB_DRIVER:org.mariadb.jdbc.Driver}
+    url: ${DB_URL:jdbc:mariadb://localhost:3306/springdb}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:palmeto}
+  jpa:
+    show-sql: true
+eureka:
+ client:
+  register-with-eureka: true
+  fetch-registry: true
+  service-url:
+   default-zone:  http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411

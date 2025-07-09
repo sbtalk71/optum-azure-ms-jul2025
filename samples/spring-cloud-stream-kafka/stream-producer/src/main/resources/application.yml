@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: stream-producer
+  kafka:
+    bootstrap-servers: localhost:9092
+  cloud:
+    stream:
+      bindings:
+        produceEvent-out-0:
+          destination: my-events

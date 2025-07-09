@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: event-consumer
+  kafka:
+    bootstrap-servers: localhost:9092
+  cloud:
+    stream:
+      bindings:
+        consumeEvent-in-0:
+          destination: my-events
+
+server:
+  port: 8081

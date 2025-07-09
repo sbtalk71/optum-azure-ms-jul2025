@@ -1,0 +1,60 @@
+server:
+  port: 10090
+spring:
+  application:
+    name: emp-api-gateway-mvc
+#  cloud:
+#    gateway:
+#      mvc:
+#        routes:
+#        - id: emp-backend
+#          uri: lb://emp-service  #http://localhost:8080/emp/
+#          predicates:
+#           Path=/emp/**
+#          filters:
+#           - name: CircuitBreaker
+#             args:
+#               id: cb2
+#               name: hr-backend
+#               fallback-uri: forward:/emp-service-message
+#        - id: hr-backend
+#          uri: lb://hr-service
+#          predicates:
+#           Path=/hr/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#               id: cb1
+#               name: hr-backend
+#               fallback-uri: forward:/error-message
+#        - id: test-backend
+#          uri: http://google.co.in
+#          predicates:
+#              Path=/test/**
+              
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      access: unrestricted
+  health:
+    circuitbreakers:
+      enabled: true
+  zipkin:
+    tracing:
+      endpoint:  http://localhost:9411
+resilience4j.circuitbreaker:
+          instances:
+            hr-backend:
+             registerHealthIndicator: true
+             slidingWindowSize: 10
+             permittedNumberOfCallsInHalfOpenState: 3
+             slidingWindowType: COUNT_BASED
+             minimumNumberOfCalls: 5
+             waitDurationInOpenState: 5s
+             failureRateThreshold: 33.3
+             automaticTransitionFromOpenToHalfOpenEnabled: true
