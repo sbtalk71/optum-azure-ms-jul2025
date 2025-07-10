@@ -25,9 +25,9 @@ spring:
                 - "authorization_code"
                 - "refresh_token"
               redirect-uris:
-                - "http://127.0.0.1:10090/login/oauth2/code/client-oidc"
+                - "http://localhost:9191/login/oauth2/code/client-oidc"
               post-logout-redirect-uris:
-                - "http://127.0.0.1:10090/"
+                - "http://localhost:9191/test/hello"
               scopes:
                 - "openid"
                 - "profile"

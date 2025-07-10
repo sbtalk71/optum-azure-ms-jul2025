@@ -1,0 +1,71 @@
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+     defaultZone: http://localhost:8761/eureka/
+
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          client-oidc:
+            client-id: oidc-client
+            client-secret: secret
+            scope: openid
+            redirect-uri: http://localhost:9191/login/oauth2/code/client-oidc
+            authorization-grant-type: authorization_code
+            client-name: client-oidc
+        provider:
+          client-oidc: 
+            issuer-uri: http://localhost:9000
+  cloud:
+    gateway:
+      server:
+        webmvc:
+         routes:
+          - id: emp-backend
+            uri: lb://emp-service
+            predicates:
+             Path=/emp/**
+            filters:
+             - name: CircuitBreaker
+               args:
+                 id: cb2
+                 name: apig-cb
+                 fallback-uri: forward:/emp-service-fallback
+          - id: hr-backend
+            uri: lb://hr-service
+            predicates:
+              Path=/hr/**
+          - id: test-uri
+            uri: http://www.google.co.in
+            predicates: 
+              Path=/test/**
+
+resilience4j.circuitbreaker:
+ instances:
+   apig-cb:
+    registerHealthIndicator: true
+    slidingWindowSize: 10
+    permittedNumberOfCallsInHalfOpenState: 3
+    slidingWindowType: COUNT_BASED
+    minimumNumberOfCalls: 5
+    waitDurationInOpenState: 5s
+    failureRateThreshold: 33.3
+    automaticTransitionFromOpenToHalfOpenEnabled: true
+
+
+management:
+ endpoints:
+   web:
+    exposure:
+      include: "*"
+ endpoint:
+    health:
+     show-details: always
+ health:
+    circuitbreakers:
+      enabled: true
