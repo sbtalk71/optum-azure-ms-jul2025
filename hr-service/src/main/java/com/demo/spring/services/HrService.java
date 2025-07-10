@@ -9,8 +9,10 @@ import com.demo.spring.exceptions.HrResourceException;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.micrometer.observation.annotation.Observed;
+import jakarta.annotation.security.RolesAllowed;
 
 @Service
+
 public class HrService {
 
 	private RestClient.Builder restClientBuilder;

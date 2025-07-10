@@ -1,9 +1,9 @@
 spring:
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/springdb
-    username: root
-    password: root
+    driver-class-name: ${DB_DRIVER:org.mariadb.jdbc.Driver}
+    url: jdbc:mariadb://${DB_HOST:localhost}:$DB_PORT:3306}/${DB_NAME:springdb}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:root}
   h2:
     console:
       enabled: true
@@ -15,4 +15,4 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
