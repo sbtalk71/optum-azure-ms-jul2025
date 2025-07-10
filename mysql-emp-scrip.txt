@@ -1,0 +1,49 @@
+MariaDB (free version of MySQL)
+
+https://downloads.mariadb.org/mariadb/
+
+Create a Database
+create database training;
+
+connect to the database:
+
+use training;
+
+List databases:
+show databases;
+
+List Tables:
+show tables;
+
+The steps:
+
+create database training;
+use training;
+create table employee(
+	empno int primary key,
+	name varchar(30),
+	location varchar(30),
+	doj date,
+	salary double);
+
+insert into employee(empno,name,location,doj,salary) values (100,'Shantanu','Hyderabad','2000-01-20',60000);
+insert into employee(empno,name,location,doj,salary) values (101,'James','Bangalore','2005-05-10',80000);
+insert into employee(empno,name,location,doj,salary) values (102,'Raja','Bangalore','2007-11-15',70000);
+insert into employee(empno,name,location,doj,salary) values (103,'Chandra','Hyderabad','2010-01-20',50000);
+insert into employee(empno,name,location,doj,salary) values (104,'Mohit','Hyderabad','2010-05-30',70000);
+insert into employee(empno,name,location,doj,salary) values (105,'Vikrant','Chennai','2020-11-10',90000);
+insert into employee(empno,name,location,doj,salary) values (106,'Shefali','Chennai','2010-01-26',70000);
+insert into employee(empno,name,location,doj,salary) values (107,'Shanker','Mumbai','2008-01-21',40000);
+insert into employee(empno,name,location,doj,salary) values (108,'Vivek','Mumbai','2009-01-10',80000);
+insert into employee(empno,name,location,doj,salary) values (109,'Scott','Hyderabad','2010-01-10',40000);
+
+
+
+jdbc:mariadb://localhost:3306/training
+
+MySQL Driver : com.mysql.jdbc.Driver
+MariaDB Driver : org.mariadb.jdbc.Driver
+
+
+
+
