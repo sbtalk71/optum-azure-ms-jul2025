@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+/*@Data
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor*/
 public class ProductStockUpdatedEvent extends Event {
     private int quantity;
     
@@ -14,4 +14,18 @@ public class ProductStockUpdatedEvent extends Event {
     	super(productId);
     	this.quantity=quantity;
     }
+    
+    public ProductStockUpdatedEvent() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+    
+    
 }
