@@ -22,8 +22,10 @@ public class SecurityConfig {
 		 * auth.requestMatchers("/emp/**").hasRole("ADMIN").requestMatchers("/hr/**")
 		 * .hasRole("USER").anyRequest().permitAll());
 		 */
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/").permitAll().anyRequest().authenticated());
-		http.oauth2Login(Customizer.withDefaults()).logout(logout->logout.logoutSuccessUrl("/"));
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/","/test/**").permitAll().anyRequest().authenticated());
+		
+		http.oauth2Login(login->login.defaultSuccessUrl("/test/g"));
+		//.logout(logout->logout.logoutSuccessUrl("/test/something"));
 		http.csrf(csrf -> csrf.disable());
 
 		return http.build();

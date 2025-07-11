@@ -10,8 +10,8 @@ spring:
     name: spring-authorization-server
   security:
     user:
-      name: user
-      password: password
+      name: shantanu
+      password: welcome1
     oauth2:
       authorizationserver:
         client:
@@ -31,4 +31,4 @@ spring:
               scopes:
                 - "openid"
                 - "profile"
-            require-authorization-consent: true
+            #require-authorization-consent: true

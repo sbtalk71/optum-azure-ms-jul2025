@@ -30,10 +30,10 @@ spec:
             configMapKeyRef:
               key: DB_NAME
               name: emp-service-config
-        - name: DB_HOSTNAME
+        - name: DB_HOST
           valueFrom:
             configMapKeyRef:
-              key: DB_HOSTNAME
+              key: DB_HOST
               name: emp-service-config
         - name: DB_PASSWORD
           valueFrom:
@@ -45,12 +45,12 @@ spec:
             configMapKeyRef:
               key: DB_PORT
               name: emp-service-config
-        - name: DB_USERNAME
+        - name: DB_USER
           valueFrom:
             configMapKeyRef:
-              key: DB_USERNAME
+              key: DB_USER
               name: emp-service-config
-      - image: sbtalk71/emp-service:3.0
+      - image: sbtalk71/emp-service:1.0
         imagePullPolicy: IfNotPresent
         name: emp-service
        
